@@ -1,1 +1,1 @@
-alert('tec ftw!')
+document.title = 'TEC FTW!';
