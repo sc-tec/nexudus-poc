@@ -1,6 +1,6 @@
-var params = location.search.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
+var params = location.search.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).map(decodeURIComponent)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
 console.log(params);
-var hashParams =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
+var hashParams =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).map(decodeURIComponent)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
 var root = document.getElementById('root');
 if (hashParams.t) {
   root.innerText = 'loading...';
@@ -20,7 +20,7 @@ if (hashParams.t) {
     root.appendChild(pre);
   });
 } else if (params.t) {
-  window.open(location.origin+location.pathname+'#t='+params.t,'_top');
+  window.open(location.origin+location.pathname+'#t='+encodeURIComponent(params.t),'_top');
 } else {
   root.innerText = 'hello!';
 }
