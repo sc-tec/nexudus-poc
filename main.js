@@ -11,7 +11,7 @@ if (hashParams.t) {
     mode: 'cors'
   };
 
-  fetch('https://cors-anywhere.herokuapp.com/spaces.nexudus.com/api/sys/users/' + userId, options)
+  fetch('https://thingproxy.freeboard.io/fetch/http://spaces.nexudus.com/api/sys/users/' + userId, options)
     .then(response => response.json())
     .then(result => {
       console.log({result});
