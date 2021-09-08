@@ -8,7 +8,7 @@ if (hashParams.t) {
   var options = {
     method: 'GET',
     headers: { Authorization: 'Bearer ' + hashParams.t,  },
-    mode: 'cors'
+    mode: 'no-cors''
   };
 
   fetch('https://thingproxy.freeboard.io/fetch/http://spaces.nexudus.com/api/sys/users/' + userId, options)
