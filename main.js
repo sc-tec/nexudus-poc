@@ -17,6 +17,7 @@ if (params.client_id && params.password && params.t) {
     headers: { Authorization: 'Basic '+btoa(params.client_id+':'+params.password) }
   })
     .then(response => response.json())
+    .then(result => log(JSON.stringify(result, 2)))
     .catch(err => log(String(err)));
 } else if (params.client_id && params.password && params['?t']) {
   window.open(location.origin+location.pathname+'#'+new URLSearchParams({client_id:params.client_id,password:params.password,t:params['?t']}),'_top');
