@@ -5,16 +5,12 @@ var root = document.getElementById('root');
 if (hashParams.t) {
   root.innerText = 'loading...';
   fetch("https://spaces.nexudus.com/api/auth/me", {
-    "headers": {
-      "accept": "application/json",
-      "authorization": "Bearer "+hashParams.t,
-      "cache-control": "no-cache",
-      "content-type": "application/json",
-      "pragma": "no-cache"
-    },
-    "method": "GET",
-    "mode": "cors",
-    "credentials": "include"
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer "+hashParams.t
+    }
   }).then(r => r.json()).then(result => {
     console.log({result});
     var pre = document.createElement('pre');
