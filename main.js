@@ -9,13 +9,13 @@ if (params.b && params.t) {
   var url = 'https://spaces.nexudus.com/api/sys/users/' + userId;
   fetch(url, {
     method: 'GET',
-    headers: { Authorization: 'Bearer '+params.t.substr(1) }
+    headers: { Authorization: 'Bearer '+params.t }
   })
     .then(response => response.json())
     .then(result => log(JSON.stringify(result, null, 2)))
     .catch(err => log(String(err)));
 } else if (params.b && params['?t']) {
-  window.open(location.origin+location.pathname+'#'+new URLSearchParams({b:params.b,t:params['?t']}),'_top');
+  window.open(location.origin+location.pathname+'#'+new URLSearchParams({b:params.b,t:params['?t'].replace(/^\$/,'')}),'_top');
 } else {
   log(location.href);
 }
