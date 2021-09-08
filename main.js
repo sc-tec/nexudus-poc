@@ -1,10 +1,5 @@
 var params =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).map(decodeURIComponent)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
 var root = document.getElementById('root');
-function log(text) {
-  var pre = document.createElement('pre');
-  pre.innerText = text;
-  root.appendChild(pre);
-}
 if (params.b && params.t) {
   log(params.t);
   log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), null, 2));
@@ -22,5 +17,10 @@ if (params.b && params.t) {
 } else if (params.b && params['?t']) {
   window.open(location.origin+location.pathname+'#'+new URLSearchParams({b:params.b,t:params['?t']}),'_top');
 } else {
-  root.innerText = 'hello!';
+  log(location.href);
+}
+function log(text) {
+  var pre = document.createElement('pre');
+  pre.innerText = text;
+  root.appendChild(pre);
 }
