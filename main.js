@@ -10,18 +10,12 @@ if (params.client_id && params.password && params.t) {
   log(params.t);
   log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), 2));
   
-  var urlToken = 'https://spaces.nexudus.com/api/token';  
   var userId = JSON.parse(JSON.parse(atob(params.t.split('.')[1])).u).u.Id;
   var url = 'http://spaces.nexudus.com/api/sys/users/' + userId;
-  fetch(urlToken, {
-    method: 'POST',
-    body: JSON.stringify({ grant_type: 'password', username: params.client_id, password: params.password })
+  fetch(url, {
+    method: 'GET',
+    headers: { Authorization: 'Basic '+btoa(params.client_id+':'+params.password) }
   })
-    .then(response => response.json())
-    .then(result => fetch(url, {
-      method: 'GET',
-      headers: { Authorization: 'Bearer ' + result.access_token }
-    }))
     .then(response => response.json())
     .catch(err => log(String(err)));
 } else if (params.client_id && params.password && params['?t']) {
