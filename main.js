@@ -7,8 +7,7 @@ if (hashParams.t) {
   var userId = JSON.parse(JSON.parse(atob(hashParams.t.split('.')[1])).u).u.Id;
   var options = {
     method: 'GET',
-    headers: { Authorization: 'Bearer ' + hashParams.t,  },
-    mode: 'no-cors'
+    headers: { Authorization: 'Bearer ' + hashParams.t }
   };
   var url = 'https://thingproxy.freeboard.io/fetch/http://spaces.nexudus.com/api/sys/users/' + userId;
   fetch(url, options)
