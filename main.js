@@ -9,7 +9,7 @@ if (params.b && params.t) {
   var url = 'https://spaces.nexudus.com/api/sys/users/' + userId;
   fetch(url, {
     method: 'GET',
-    headers: { Authorization: 'Basic '+params.b }
+    headers: { Authorization: 'Bearer '+params.t.substr(1) }
   })
     .then(response => response.json())
     .then(result => log(JSON.stringify(result, null, 2)))
