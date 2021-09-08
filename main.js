@@ -7,7 +7,7 @@ if (hashParams.t) {
   fetch("https://spaces.nexudus.com/api/auth/me", {
     "headers": {
       "accept": "application/json",
-      "authorization": "Bearer "+hashParam.t,
+      "authorization": "Bearer "+hashParams.t,
       "content-type": "application/json"
     },
     "method": "GET",
