@@ -8,9 +8,13 @@ if (hashParams.t) {
     "headers": {
       "accept": "application/json",
       "authorization": "Bearer "+hashParams.t,
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "pragma": "no-cache"
     },
     "method": "GET",
-    "mode": "cors"
+    "mode": "cors",
+    "credentials": "include"
   }).then(r => r.json()).then(result => {
     console.log({result});
     var pre = document.createElement('pre');
