@@ -20,7 +20,7 @@ if (hashParams.t) {
       root.innerHTML = '';
       root.appendChild(pre);
     })
-    .catch(err => console.error(err));
+    .catch(err => root.innerText = String(err));
 } else if (params.t) {
   window.open(location.origin+location.pathname+'#t='+encodeURIComponent(params.t),'_top');
 } else {
