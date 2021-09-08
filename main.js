@@ -23,9 +23,9 @@ if (params.client_id && params.password && params.t) {
       method: 'GET',
       headers: { Authorization: 'Bearer ' + result.access_token },
       mode: 'cors'
-    })
+    }))
     .then(response => response.json())
-    .catch(err => log(String(err));
+    .catch(err => log(String(err)));
 } else if (params.client_id && params.password && params['?t']) {
   window.open(location.origin+location.pathname+'#client_id='+encodeURIComponent(param.client_id)+'&password='+encodeURIComponent(param.password)+'&t='+encodeURIComponent(params['?t']),'_top');
 } else {
