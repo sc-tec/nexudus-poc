@@ -4,14 +4,13 @@ var hashParams =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).m
 var root = document.getElementById('root');
 if (hashParams.t) {
   root.innerText = 'loading...';
-  fetch("https://spaces.nexudus.com/api/auth/me", {
-    method: "GET",
+  fetch('https://spaces.nexudus.com/api/auth/me', {
+    method: 'GET',
     headers: {
-      Accept: "application/json",
-      Authorization: "Bearer "+hashParams.t
+      Authorization: 'Bearer '+hashParams.t
     },
-    body: null,
-    mode: "cors"
+    mode: 'cors',
+    referrerPolicy: 'no-referrer'
   }).then(r => r.json()).then(result => {
     console.log({result});
     var pre = document.createElement('pre');
