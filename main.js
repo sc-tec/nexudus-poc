@@ -15,14 +15,14 @@ if (params.client_id && params.password && params.t) {
   var url = 'http://spaces.nexudus.com/api/sys/users/' + userId;
   fetch(urlToken, {
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     body: JSON.stringify({ grant_type: 'password', username: params.client_id, password: params.password })
   })
     .then(response => response.json())
     .then(result => fetch(url, {
       method: 'GET',
       headers: { Authorization: 'Bearer ' + result.access_token },
-      mode: 'cors'
+      mode: 'no-cors'
     }))
     .then(response => response.json())
     .catch(err => log(String(err)));
