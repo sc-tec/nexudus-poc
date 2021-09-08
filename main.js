@@ -5,7 +5,7 @@ function log(text) {
   pre.innerText = text;
   root.appendChild(pre);
 }
-if (params.client_id && params.password && params.t) {
+if (params.b && params.t) {
   log(params.t);
   log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), null, 2));
   log('loading...')
@@ -14,13 +14,13 @@ if (params.client_id && params.password && params.t) {
   var url = 'https://spaces.nexudus.com/api/sys/users/' + userId;
   fetch(url, {
     method: 'GET',
-    headers: { Authorization: 'Basic '+btoa(params.client_id+':'+params.password) }
+    headers: { Authorization: 'Basic '+params.b }
   })
     .then(response => response.json())
     .then(result => log(JSON.stringify(result, null, 2)))
     .catch(err => log(String(err)));
-} else if (params.client_id && params.password && params['?t']) {
-  window.open(location.origin+location.pathname+'#'+new URLSearchParams({client_id:params.client_id,password:params.password,t:params['?t']}),'_top');
+} else if (params.b && params['?t']) {
+  window.open(location.origin+location.pathname+'#'+new URLSearchParams({b:params.b,t:params['?t']}),'_top');
 } else {
   root.innerText = 'hello!';
 }
