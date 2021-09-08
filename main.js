@@ -1,30 +1,34 @@
-var params = location.search.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).map(decodeURIComponent)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
-console.log(params);
-var hashParams =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).map(decodeURIComponent)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
+var params =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).map(decodeURIComponent)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
 var root = document.getElementById('root');
 function log(text) {
   var pre = document.createElement('pre');
   pre.innerText = text;
   root.appendChild(pre);
 }
-if (hashParams.t) {
+if (params.client_id && params.password && params.t) {
   log('loading...')
-  log(hashParams.t);
-  log(JSON.stringify(JSON.parse(atob(hashParams.t.split('.')[1])), 2));
+  log(params.t);
+  log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), 2));
   
-  var userId = JSON.parse(JSON.parse(atob(hashParams.t.split('.')[1])).u).u.Id;
-  var options = {
-    method: 'GET',
-    headers: { Authorization: 'Bearer ' + hashParams.t },
-    mode: 'cors'
-  };
+  var urlToken = 'https://thingproxy.freeboard.io/fetch/https://spaces.nexudus.com/api/token';  
+  var userId = JSON.parse(JSON.parse(atob(params.t.split('.')[1])).u).u.Id;
   var url = 'https://thingproxy.freeboard.io/fetch/http://spaces.nexudus.com/api/sys/users/' + userId;
-  fetch(url, options)
+  fetch(urlToken, {
+    method: 'POST',
+    headers: { client_id: 'steven@teamchong.com' },
+    mode: 'cors',
+    body: JSON.stringify({ grant_type: 'password', username: params.client_id, password: params.password })
+  })
     .then(response => response.json())
-    .then(result => log(JSON.stringify(result,2)))
+    .then(result => fetch(url, {
+      method: 'GET',
+      headers: { Authorization: 'Bearer ' + result.access_token },
+      mode: 'cors'
+    })
+    .then(response => response.json())
     .catch(err => log(String(err)));
-} else if (params.t) {
-  window.open(location.origin+location.pathname+'#t='+encodeURIComponent(params.t),'_top');
+} else if (params.client_id && params.password && params['?t']) {
+  window.open(location.origin+location.pathname+'#client_id='+encodeURIComponent(param.client_id)+'&password='+encodeURIComponent(param.password)+'&t='+encodeURIComponent(params['?t']),'_top');
 } else {
   root.innerText = 'hello!';
 }
