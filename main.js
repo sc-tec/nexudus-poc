@@ -4,6 +4,10 @@ var hashParams =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).m
 var root = document.getElementById('root');
 if (hashParams.t) {
   root.innerText = 'loading...';
+  var pre = document.createElement('pre');
+  pre.innerText = JSON.stringify(JSON.parse(atob(hashParams.t.split('.')[1])), 2);
+  root.appendChild(pre);
+  
   var userId = JSON.parse(JSON.parse(atob(hashParams.t.split('.')[1])).u).u.Id;
   var options = {
     method: 'GET',
