@@ -1,6 +1,6 @@
 var params =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).map(decodeURIComponent)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
 var root = document.getElementById('root');
-if (params.t) {
+if (params.b && params.t) {
   log(params.t);
   log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), null, 2));
   log('loading...')
@@ -14,8 +14,8 @@ if (params.t) {
     .then(response => response.json())
     .then(result => log(JSON.stringify(result, null, 2)))
     .catch(err => log(String(err)));
-} else if (params['?t']) {
-  window.open(location.origin+location.pathname+'#'+new URLSearchParams({t:params['?t'].replace(/^\$/,'')}),'_top');
+} else if (params.b && params['?t']) {
+  window.open(location.origin+location.pathname+'#'+new URLSearchParams({b:params.b,t:params['?t'].replace(/^\$/,'')}),'_top');
 } else {
   log(location.href);
 }
