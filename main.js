@@ -7,11 +7,11 @@ if (hashParams.t) {
   var userId = JSON.parse(JSON.parse(atob(hashParams.t.split('.')[1])).u).u.Id;
   var options = {
     method: 'GET',
-    headers: { Authorization: 'Bearer ' + hashParams.t },
+    headers: { Authorization: 'Bearer ' + hashParams.t,  },
     mode: 'cors'
   };
 
-  fetch('https://api.allorigins.win/get?url='+encodeURIComponent('https://spaces.nexudus.com/api/sys/users/' + userId), options)
+  fetch('https://cors-anywhere.herokuapp.com/spaces.nexudus.com/api/sys/users/' + userId, options)
     .then(response => response.json())
     .then(result => {
       console.log({result});
