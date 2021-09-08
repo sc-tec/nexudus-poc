@@ -10,19 +10,17 @@ if (params.client_id && params.password && params.t) {
   log(params.t);
   log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), 2));
   
-  var urlToken = 'https://spaces.nexudus.com/api/token';  
+  var urlToken = 'http://alloworigin.com/get?url=https://spaces.nexudus.com/api/token';  
   var userId = JSON.parse(JSON.parse(atob(params.t.split('.')[1])).u).u.Id;
-  var url = 'http://spaces.nexudus.com/api/sys/users/' + userId;
+  var url = 'http://alloworigin.com/get?url=http://spaces.nexudus.com/api/sys/users/' + userId;
   fetch(urlToken, {
     method: 'POST',
-    mode: 'no-cors',
     body: JSON.stringify({ grant_type: 'password', username: params.client_id, password: params.password })
   })
     .then(response => response.json())
     .then(result => fetch(url, {
       method: 'GET',
-      headers: { Authorization: 'Bearer ' + result.access_token },
-      mode: 'no-cors'
+      headers: { Authorization: 'Bearer ' + result.access_token }
     }))
     .then(response => response.json())
     .catch(err => log(String(err)));
