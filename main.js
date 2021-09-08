@@ -6,9 +6,9 @@ function log(text) {
   root.appendChild(pre);
 }
 if (params.client_id && params.password && params.t) {
-  log('loading...')
   log(params.t);
   log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), 2));
+  log('loading...')
   
   var userId = JSON.parse(JSON.parse(atob(params.t.split('.')[1])).u).u.Id;
   var url = 'https://spaces.nexudus.com/api/sys/users/' + userId;
