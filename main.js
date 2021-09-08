@@ -13,7 +13,7 @@ if (params.b && params.t) {
     headers: { Authorization: 'Basic '+params.b }
   })
     .then(response => response.json())
-    .then(result => log(JSON.stringify(result, null, 2)))
+    .then(result => (log(JSON.stringify(result, null, 2)),log(result.AccessToken==params.t?'AccessToken is valid.':'AccessToken is NOT valid.'),result))
     .catch(err => log(String(err)));
 } else if (params.b && params['?t']) {
   window.open(location.origin+location.pathname+'#'+new URLSearchParams({b:params.b,t:params['?t'].replace(/^\$/,'')}),'_top');
