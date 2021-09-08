@@ -10,6 +10,7 @@ if (hashParams.t) {
       "authorization": "Bearer "+hashParams.t,
     },
     "method": "GET",
+    "mode": "cors"
   }).then(r => r.json()).then(result => {
     console.log({result});
     var pre = document.createElement('pre');
