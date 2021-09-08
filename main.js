@@ -10,8 +10,8 @@ if (hashParams.t) {
     headers: { Authorization: 'Bearer ' + hashParams.t,  },
     mode: 'no-cors''
   };
-
-  fetch('https://thingproxy.freeboard.io/fetch/http://spaces.nexudus.com/api/sys/users/' + userId, options)
+  var url = 'https://thingproxy.freeboard.io/fetch/http://spaces.nexudus.com/api/sys/users/' + userId;
+  fetch(url, options)
     .then(response => response.json())
     .then(result => {
       console.log({result});
