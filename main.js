@@ -4,21 +4,22 @@ var hashParams =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).m
 var root = document.getElementById('root');
 if (hashParams.t) {
   root.innerText = 'loading...';
-  fetch('https://spaces.nexudus.com/api/auth/me', {
+  var userId = JSON.parse(JSON.parse(atob(hashParams.t.split('.')[1])).u).Id;
+  var options = {
     method: 'GET',
-    headers: {
-      Authorization: 'Bearer '+hashParams.t
-    },
-    mode: 'cors',
-    referrerPolicy: 'no-referrer'
-  }).then(r => r.json()).then(result => {
-    console.log({result});
-    var pre = document.createElement('pre');
-    pre.innerText = JSON.stringify(result, 2);
-    root.innerHTML = '';
-    root.appendChild(pre);
-  })
-  .catch(err => console.error(err));
+    headers: { Authorization: 'Bearer ' + hashParams.t }
+  };
+
+  fetch('https://spaces.nexudus.com/api/sys/users/' + userId, options)
+    .then(response => response.json())
+    .then(result => {
+      console.log({result});
+      var pre = document.createElement('pre');
+      pre.innerText = JSON.stringify(result, 2);
+      root.innerHTML = '';
+      root.appendChild(pre);
+    })
+    .catch(err => console.error(err));
 } else if (params.t) {
   window.open(location.origin+location.pathname+'#t='+encodeURIComponent(params.t),'_top');
 } else {
