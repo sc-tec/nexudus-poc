@@ -11,7 +11,7 @@ if (hashParams.t) {
     mode: 'cors'
   };
 
-  fetch('https://cors-anywhere.herokuapp.com/https://spaces.nexudus.com/api/sys/users/' + userId, options)
+  fetch('https://api.allorigins.win/get?url='+encodeURIComponent('https://spaces.nexudus.com/api/sys/users/' + userId), options)
     .then(response => response.json())
     .then(result => {
       console.log({result});
