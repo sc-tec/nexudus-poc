@@ -1,6 +1,7 @@
 var params =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).map(decodeURIComponent)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
 var root = document.getElementById('root');
 if (params.b && params.t) {
+  log(params.b);
   log(params.t);
   log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), null, 2));
   log('loading...')
