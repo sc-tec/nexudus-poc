@@ -3,7 +3,7 @@ console.log(params);
 var hashParams =location.hash.substr(1).split('&').map(l=>l.split(/(?<!=.*)=/).map(decodeURIComponent)).reduce((o,[k,v])=>Object.assign(o,{[k]:v}),{});
 var root = document.getElementById('root');
 if (hashParams.t) {
-  root.innerText = 'loading...';
+  root.innerText = 'loading...\n' + hashParams.t;
   var pre = document.createElement('pre');
   pre.innerText = JSON.stringify(JSON.parse(atob(hashParams.t.split('.')[1])), 2);
   root.appendChild(pre);
