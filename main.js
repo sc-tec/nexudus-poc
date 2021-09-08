@@ -12,7 +12,7 @@ if (hashParams.t) {
     },
     "method": "GET",
     "mode": "cors",
-  }).then(result => {
+  }).then(r => r.json()).then(result => {
     console.log({result});
     var pre = document.createElement('pre');
     pre.innerText = JSON.stringify(result, 2);
