@@ -10,9 +10,9 @@ if (params.client_id && params.password && params.t) {
   log(params.t);
   log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), 2));
   
-  var urlToken = 'http://alloworigin.com/get?url=https://spaces.nexudus.com/api/token';  
+  var urlToken = 'https://alloworigin.com/get?url=https://spaces.nexudus.com/api/token';  
   var userId = JSON.parse(JSON.parse(atob(params.t.split('.')[1])).u).u.Id;
-  var url = 'http://alloworigin.com/get?url=http://spaces.nexudus.com/api/sys/users/' + userId;
+  var url = 'https://alloworigin.com/get?url=http://spaces.nexudus.com/api/sys/users/' + userId;
   fetch(urlToken, {
     method: 'POST',
     body: JSON.stringify({ grant_type: 'password', username: params.client_id, password: params.password })
