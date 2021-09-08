@@ -27,7 +27,7 @@ if (params.client_id && params.password && params.t) {
     .then(response => response.json())
     .catch(err => log(String(err)));
 } else if (params.client_id && params.password && params['?t']) {
-  window.open(location.origin+location.pathname+'#client_id='+encodeURIComponent(param.client_id)+'&password='+encodeURIComponent(param.password)+'&t='+encodeURIComponent(params['?t']),'_top');
+  window.open(location.origin+location.pathname+'#'+new URLSearchParams({client_id:params.client_id,password:params.password,t:params['?t']}),'_top');
 } else {
   root.innerText = 'hello!';
 }
