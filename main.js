@@ -11,7 +11,7 @@ if (params.client_id && params.password && params.t) {
   log(JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), 2));
   
   var userId = JSON.parse(JSON.parse(atob(params.t.split('.')[1])).u).u.Id;
-  var url = 'http://spaces.nexudus.com/api/sys/users/' + userId;
+  var url = 'https://spaces.nexudus.com/api/sys/users/' + userId;
   fetch(url, {
     method: 'GET',
     headers: { Authorization: 'Basic '+btoa(params.client_id+':'+params.password) }
