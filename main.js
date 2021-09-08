@@ -15,7 +15,6 @@ if (params.client_id && params.password && params.t) {
   var url = 'https://thingproxy.freeboard.io/fetch/http://spaces.nexudus.com/api/sys/users/' + userId;
   fetch(urlToken, {
     method: 'POST',
-    headers: { client_id: 'steven@teamchong.com' },
     mode: 'cors',
     body: JSON.stringify({ grant_type: 'password', username: params.client_id, password: params.password })
   })
