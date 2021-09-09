@@ -32,5 +32,5 @@ try {
 }
 function log() {
   for (var i = 0; i < arguments.length; i++)
-    root.appendChild(Object.assign(document.createElement('pre'), { innerText: text }))
+    root.appendChild(Object.assign(document.createElement('pre'), { innerText: arguments[i] }))
 }
