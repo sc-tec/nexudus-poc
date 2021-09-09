@@ -8,8 +8,8 @@ try {
       return Object.assign(o, k === '?t' ? 
         { t: params[k].replace(/^\$/, '') } :
         { [ k ]: params[k] }
-      ), {}
-    })), '_top')
+      )
+    }, {})), '_top')
   } else if (params.b && params.t) {
     log(params.b, params.t, JSON.stringify(JSON.parse(atob(params.t.split('.')[1])), null, 2), 'loading...')
     var userId = JSON.parse(JSON.parse(atob(params.t.split('.')[1])).u).u.Id
